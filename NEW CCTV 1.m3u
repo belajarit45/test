@@ -40,7 +40,7 @@ https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1230-24472.ts
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1206-50853.ts
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Bukit Barisan - Harapan Raya
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1201.m3u8
 
@@ -49,52 +49,52 @@ https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1201.m3u8
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1202.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Pasar Bawah
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1204.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Sp. Marpoyan - Pasir Putih
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1206.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Sp. Labersa - Parit Indah
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1208.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Ahmad Dahlan - Durian
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1213.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Jl. Lobak Simp.4 Melati
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1214.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Soebrantas - Garuda Sakti
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1215.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Soetta - Arifin Ahmad
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1216.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Simpang Bandara
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1223.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Sp. Nangka-Mallska
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1226.m3u8
 
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Rth Kaca Mayang
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1230.m3u8
 
