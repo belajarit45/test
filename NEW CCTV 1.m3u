@@ -1,47 +1,10 @@
 #EXTM3U
 
 
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 1
-https://cctv.pekanbaru.go.id/b41fb379-e86c-4139-b4ef-682d5757cde1
-
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 2
-blob:https://cctv.pekanbaru.go.id/8ce3678a-7ad4-4946-8929-12370a46e55a
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 3
-https://cctv.pekanbaru.go.id/5860e05e-16fb-4394-a184-32427cf38fb3
-
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 4
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1202___00076.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 5
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1230-24474.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 6
-https://cctv.pekanbaru.go.id/5860e05e-16fb-4394-a184-32427cf38fb3
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 7
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1230-24473.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 8
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1226-44733.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 9
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1214-3375.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 10
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1208-62305.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 11
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1230-24472.ts
-
-#EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,new 12
-https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1206-50853.ts
-
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:29761
+#EXT-X-TARGETDURATION:10
 #EXTINF:-1 group-title="CCTV Kota Pekanbaru" ,Bukit Barisan - Harapan Raya
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=m3u8
 https://rtmp.pekanbaru.go.id/cctv-kota/cctv-1201.m3u8
 
 
