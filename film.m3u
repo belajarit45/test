@@ -1,3 +1,6 @@
 #EXTM3U
 #EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg", Guardians of the Galaxy Vol. 3 - Science Fiction, Adventure, Action
 https://drive.google.com/file/d/128_-Nx90fWnIxurzvIfndbQkYuguYOSd/view?usp=sharing
+
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/xxxxx.jpg", Film Contoh - Genre A, Genre B
+https://drive.google.com/uc?export=download&id=128_-Nx90fWnIxurzvIfndbQkYuguYOSd
