@@ -3,8 +3,8 @@
 #EXTINF:-1 tvg-logo="LINK POSTER" group-title="NAMA GROUP FILM" ,JUDUL FILM
 https://www.googleapis.com/drive/v3/files/KODEFILEGOOGLEDRIVE?alt=media&key=GOOGLEAPIKEY
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/original/gPbM0MK8CP8A174rmUwGsADNYKD.jpg" group-title="Genre 878",Transformers: Rise of the Beasts
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/original/gPbM0MK8CP8A174rmUwGsADNYKD.jpg" group-title="Cerita Fiksi,Petualangan Aksi",Transformers_ Rise of the Beasts (2023)-1080p.mp4
 https://www.googleapis.com/drive/v3/files/1j_mSNZVXacjzdJMX2ZNsSUKB6goQwmC8?alt=media&key=AIzaSyBxzdto0B6707oFAqObYUQsDMBEkjSZl_s
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg" group-title="Genre 878",Guardians of the Galaxy Vol. 3
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg" group-title="Cerita Fiksi,Petualangan Aksi",Guardians of the Galaxy Vol. 3 (2023)-1080p.mp4
 https://www.googleapis.com/drive/v3/files/128_-Nx90fWnIxurzvIfndbQkYuguYOSd?alt=media&key=AIzaSyBxzdto0B6707oFAqObYUQsDMBEkjSZl_s
