@@ -1,0 +1,192 @@
+import requests
+import base64
+
+# Konfigurasi API TMDB
+TMDB_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"  # Ganti dengan API key Anda
+TMDB_API_URL = "https://api.themoviedb.org/3"
+
+# Fungsi untuk mencari film di TMDB berdasarkan judul dan tahun
+def search_movie_by_title_and_year(movie_title, movie_year):
+    url = f"{TMDB_API_URL}/search/movie"
+    params = {
+        "api_key": TMDB_API_KEY,
+        "query": movie_title,
+        "language": "id-ID"
+    }
+    response = requests.get(url, params=params)
+    if response.status_code != 200:
+        print("Gagal mengakses TMDB API.")
+        return None
+
+    # Filter hasil pencarian berdasarkan tahun rilis
+    search_results = response.json().get("results", [])
+    filtered_results = [
+        movie for movie in search_results if movie_year in movie.get("release_date", "")
+    ]
+    return filtered_results
+
+# Fungsi untuk mendapatkan detail film
+def get_movie_details(movie_id):
+    url = f"{TMDB_API_URL}/movie/{movie_id}"
+    params = {
+        "api_key": TMDB_API_KEY,
+        "language": "id-ID"
+    }
+    response = requests.get(url, params=params)
+    if response.status_code != 200:
+        print("Gagal mendapatkan detail film.")
+        return None
+    return response.json()
+
+# Fungsi untuk membuat konten M3U dalam bentuk string
+def create_m3u_content(stream_link, movie_data):
+    try:
+        m3u_content = f"#EXTINF:-1 tvg-logo=\"{movie_data['poster_path']}\" group-title=\"{movie_data['genres']}\", {movie_data['title']} ({movie_data['release_year']})\n"
+        m3u_content += f"{stream_link}\n\n"  # Baris kosong setelah setiap film
+        return m3u_content
+    except Exception as e:
+        print(f"Gagal membuat konten M3U: {e}")
+        return None
+
+# Fungsi untuk mengunggah konten M3U ke GitHub
+def upload_to_github(encoded_content, github_token, repo, branch="main", file_name=""):
+    api_url = f"https://api.github.com/repos/{repo}/contents/{file_name}"
+    try:
+        # Cek apakah file sudah ada di GitHub
+        response = requests.get(api_url, headers={"Authorization": f"Bearer {github_token}"})
+        if response.status_code == 200:
+            sha = response.json().get("sha")  # SHA file yang ada
+            message = "Update file M3U"
+        else:
+            sha = None
+            message = "Menambahkan file M3U baru"
+        
+        # Kirim permintaan ke GitHub API untuk membuat atau memperbarui file
+        data = {
+            "message": message,
+            "content": encoded_content,
+            "branch": branch,
+        }
+        if sha:
+            data["sha"] = sha
+
+        response = requests.put(api_url, json=data, headers={"Authorization": f"Bearer {github_token}"})
+        if response.status_code in (200, 201):
+            print(f"File berhasil diunggah atau diperbarui di GitHub: {file_name}")
+        else:
+            print(f"Error saat mengunggah file ke GitHub: {response.json()}")
+    except Exception as e:
+        print(f"Terjadi kesalahan saat mengunggah ke GitHub: {e}")
+
+# Fungsi untuk memeriksa apakah film dengan judul dan tahun sudah ada di GitHub
+def check_if_movie_exists_in_github(github_token, repo, file_name, movie_title, movie_year):
+    api_url = f"https://api.github.com/repos/{repo}/contents/{file_name}"
+    try:
+        # Ambil konten file M3U dari GitHub
+        response = requests.get(api_url, headers={"Authorization": f"Bearer {github_token}"})
+        
+        if response.status_code == 200:
+            content = response.json()
+            decoded_content = base64.b64decode(content['content']).decode("utf-8")
+
+            # Cek apakah judul film dan tahun sudah ada di dalam konten file
+            if f"{movie_title} ({movie_year})" in decoded_content:
+                return True
+        return False
+    except Exception as e:
+        print(f"Terjadi kesalahan saat memeriksa file di GitHub: {e}")
+        return False
+
+# Fungsi untuk menambahkan film baru ke dalam file M3U yang ada di GitHub
+def append_movie_to_github(github_token, repo, file_name, stream_link, movie_data):
+    # Cek apakah film sudah ada di dalam file M3U di GitHub
+    if check_if_movie_exists_in_github(github_token, repo, file_name, movie_data['title'], movie_data['release_year']):
+        print(f"Film '{movie_data['title']} ({movie_data['release_year']})' sudah ada di GitHub. Proses dibatalkan.")
+        return
+    
+    # Ambil konten M3U yang ada di GitHub
+    api_url = f"https://api.github.com/repos/{repo}/contents/{file_name}"
+    response = requests.get(api_url, headers={"Authorization": f"Bearer {github_token}"})
+    if response.status_code == 200:
+        content = response.json()
+        decoded_content = base64.b64decode(content['content']).decode("utf-8")
+    else:
+        decoded_content = "#EXTM3U\n"  # File M3U baru jika belum ada file di GitHub
+    
+    # Buat konten M3U baru untuk film
+    m3u_content = create_m3u_content(stream_link, movie_data)
+    
+    # Gabungkan konten M3U yang ada dengan yang baru
+    updated_content = decoded_content + m3u_content
+
+    # Encode konten yang telah diperbarui ke base64
+    encoded_content = base64.b64encode(updated_content.encode("utf-8")).decode("utf-8")
+    
+    # Mengunggah konten yang diperbarui ke GitHub
+    print("\nMengunggah konten ke GitHub...")
+    upload_to_github(encoded_content, github_token, repo, branch="main", file_name=file_name)
+
+# Main program
+def main():
+    print("=== Script Generator File M3U ===")
+    stream_link = input("Masukkan link streaming film: ").strip()
+    if not stream_link:
+        print("Link streaming tidak boleh kosong!")
+        return
+    
+    movie_title = input("Masukkan judul film: ").strip()
+    if not movie_title:
+        print("Judul film tidak boleh kosong!")
+        return
+
+    movie_year = input("Masukkan tahun rilis film (contoh: 2023): ").strip()
+    if not movie_year:
+        print("Tahun rilis film tidak boleh kosong!")
+        return
+
+    print("Mencari film di TMDB...")
+    search_results = search_movie_by_title_and_year(movie_title, movie_year)
+    if not search_results:
+        print("Tidak ada hasil yang ditemukan.")
+        return
+
+    # Menampilkan hasil pencarian
+    print("\nHasil pencarian:")
+    for idx, movie in enumerate(search_results):
+        print(f"{idx + 1}. {movie['title']} ({movie['release_date']})")
+        print(f"   Poster: https://image.tmdb.org/t/p/w500{movie['poster_path']}" if movie.get('poster_path') else "Poster tidak tersedia")
+    
+    # Pilih film pertama yang ditemukan
+    selected_movie = search_results[0]
+    print(f"\nFilm yang dipilih: {selected_movie['title']} ({selected_movie['release_date']})")
+
+    # Mendapatkan detail film
+    print("\nMendapatkan detail film...")
+    movie_details = get_movie_details(selected_movie["id"])
+    if not movie_details:
+        print("Gagal mendapatkan detail film.")
+        return
+
+    genres = ", ".join([genre["name"] for genre in movie_details.get("genres", [])])
+    release_year = movie_details.get("release_date", "").split("-")[0]  # Ambil tahun dari tanggal rilis
+    movie_data = {
+        "title": movie_details["title"],
+        "poster_path": f"https://image.tmdb.org/t/p/w500{movie_details['poster_path']}" if movie_details.get("poster_path") else "Tidak tersedia",
+        "genres": genres,
+        "release_year": release_year
+    }
+
+    print(f"\nFilm yang dipilih: {movie_data['title']} ({movie_data['release_year']})")
+    print(f"Genre: {movie_data['genres']}")
+    print(f"Poster: {movie_data['poster_path']}")
+
+    # Cek jika film dengan judul dan tahun yang sama sudah ada di GitHub
+    github_token = "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"
+    repo = "belajarit45/test"  # Ganti dengan repo Anda
+    file_name = "filmcoba3.m3u"
+
+    # Menambahkan film ke file M3U di GitHub
+    append_movie_to_github(github_token, repo, file_name, stream_link, movie_data)
+
+if __name__ == "__main__":
+    main()
