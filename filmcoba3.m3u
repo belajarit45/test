@@ -1,7 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg" group-title="Petualangan, Aksi, Cerita Fiksi", Captain America: Civil War (2016)
-https://be6721.rcr72.waw04.cdn255.com/hls2/01/06975/8mvebwskt9eu_x/index-v1-a1.m3u8?t=EaQvpufgx3fAbPUzmQEfeH3s06cT50oLCzfVHmBp5tk&s=1734245213&e=10800&f=34879121&srv=23&asn=63859&sp=5500&p=
-
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg" group-title="Aksi, Petualangan, Cerita Fiksi", Captain America: The Winter Soldier (2014)
-https://be6721.rcr72.waw04.cdn255.com/hls2/01/06975/sez7qv7ja09t_x/index-v1-a1.m3u8?t=6tqMWjPddx2hDQLSUAfKtr06yg6EwZ7ORewg8fOZl5U&s=1734245508&e=10800&f=34878139&srv=21&asn=63859&sp=5500&p=
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg" group-title="Aksi, Petualangan, Cerita Fiksi", Avengers: Age of Ultron (2015)
+https://be4242.rcr52.ams03.cdn255.com/hls2/01/06983/66vww9mbpzvc_x/index-v1-a1.m3u8?t=sMT7gJAAgyPPUGQz_2bxNMAtRnlioRuT4MZLhMspmyw&s=1734246088&e=10800&f=34918443&srv=23&asn=63859&sp=5500&p=
 
