@@ -1,0 +1,152 @@
+import requests
+import json
+import base64
+import re
+
+# URL untuk file m3u di GitHub
+GITHUB_URL = "https://raw.githubusercontent.com/belajarit45/test/main/filmupdate.m3u"
+GITHUB_REPO = "belajarit45/test"  # Format: username/repo
+GITHUB_FILE_PATH = "filmupdate.m3u"
+GITHUB_ACCESS_TOKEN = "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"
+
+# Template link Google Drive
+GOOGLE_DRIVE_TEMPLATE = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key=AIzaSyCCktYZv7eHScolv3-H8qB0tz-ycFj73F0"
+
+# Konfigurasi API TMDB
+TMDB_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
+TMDB_BASE_URL = "https://api.themoviedb.org/3/search/movie"
+
+# Konfigurasi API Google Drive
+GOOGLE_DRIVE_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
+GOOGLE_DRIVE_API_URL = "https://www.googleapis.com/drive/v3/files"
+
+# ID folder Google Drive (diperoleh dari URL folder)
+GOOGLE_DRIVE_FOLDER_ID = "1-CkdUJEKTO7tN4zOgGSSMyJm6mnhd-X8"  # Pastikan ID folder Google Drive sudah benar
+
+# Fungsi untuk memproses nama file agar sesuai dengan format yang diinginkan
+def process_filename(filename):
+    # Menggunakan regex untuk menghapus bagian yang tidak diperlukan
+    new_name = re.sub(r"^.*?-(.*?)(-\d{3,4}p)?\.mp4$", r"\1\2", filename)
+    return new_name
+
+# Fungsi untuk mendapatkan daftar file di Google Drive dari folder tertentu
+def get_google_drive_files():
+    params = {
+        "q": f"'{GOOGLE_DRIVE_FOLDER_ID}' in parents and trashed=false",  # Cek file di folder tertentu
+        "fields": "files(name, id)",  # Ambil nama dan id file
+        "key": GOOGLE_DRIVE_API_KEY
+    }
+    response = requests.get(GOOGLE_DRIVE_API_URL, params=params)
+    if response.status_code == 200:
+        return {file["name"]: file["id"] for file in response.json().get("files", [])}
+    else:
+        print("Gagal mendapatkan file dari Google Drive:", response.text)
+        return {}
+
+# Fungsi untuk memeriksa genre film di TMDB berdasarkan judul film
+def get_movie_genre(title):
+    params = {"api_key": TMDB_API_KEY, "query": title}
+    response = requests.get(TMDB_BASE_URL, params=params)
+    if response.status_code == 200 and response.json()["results"]:
+        genres = response.json()["results"][0].get("genre_ids", [])
+        if genres:
+            genre_id = genres[0]
+            return translate_genre_to_indonesian(genre_id)
+    return "Tidak Diketahui"
+
+# Fungsi untuk menerjemahkan genre TMDB ke bahasa Indonesia
+def translate_genre_to_indonesian(genre_id):
+    genre_mapping = {
+        28: "Aksi",
+        12: "Petualangan",
+        16: "Animasi",
+        35: "Komedi",
+        80: "Kejahatan",
+        99: "Dokumenter",
+        18: "Drama",
+        10751: "Keluarga",
+        14: "Fantasi",
+        36: "Sejarah",
+        27: "Horor",
+        10402: "Musik",
+        9648: "Misteri",
+        10749: "Romansa",
+        878: "Fiksi Ilmiah",
+        10770: "Film TV",
+        53: "Thriller",
+        10752: "Perang",
+        37: "Barat"
+    }
+    return genre_mapping.get(genre_id, "Tidak Diketahui")
+
+# Fungsi untuk mendapatkan konten file dari GitHub
+def get_github_file():
+    headers = {"Authorization": f"Bearer {GITHUB_ACCESS_TOKEN}"}
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE_PATH}"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        file_content = response.json().get("content", "")
+        # Decode base64
+        decoded_content = base64.b64decode(file_content).decode('utf-8')
+        return decoded_content
+    else:
+        print("Gagal mengakses file GitHub:", response.text)
+        return ""
+
+# Fungsi untuk memperbarui file m3u di GitHub
+def update_github_file(updated_content):
+    headers = {"Authorization": f"Bearer {GITHUB_ACCESS_TOKEN}"}
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE_PATH}"
+    current_content = get_github_file()
+    sha = requests.get(url, headers=headers).json().get("sha", "")
+
+    data = {
+        "message": "Update film list",
+        "content": base64.b64encode(updated_content.encode('utf-8')).decode('utf-8'),
+        "sha": sha
+    }
+    response = requests.put(url, headers=headers, data=json.dumps(data))
+    if response.status_code == 200:
+        print("File m3u berhasil diperbarui di GitHub!")
+    else:
+        print("Gagal memperbarui file di GitHub:", response.text)
+
+# Fungsi utama
+def main():
+    # Ambil daftar file di Google Drive
+    drive_files = get_google_drive_files()
+    
+    # Ambil daftar film dari GitHub
+    existing_m3u = get_github_file()
+
+    for title, file_id in drive_files.items():
+        # Proses nama file dan ambil tahun
+        processed_title = process_filename(title)
+        match = re.match(r"^(.*?)(\(\d{4}\))", processed_title)
+        if match:
+            title_without_year = match.group(1).strip()
+            year = match.group(2).strip('()')
+
+            # Cek apakah film sudah ada
+            if processed_title in existing_m3u:
+                print(f"Film '{processed_title}' sudah ada.")
+            else:
+                print(f"Menambahkan film '{processed_title}'...")
+                genre = get_movie_genre(title_without_year)
+                link = GOOGLE_DRIVE_TEMPLATE.format(file_id=file_id)
+                # Tambahkan newline setelah link untuk memberikan jarak satu baris
+                new_entry = f"#EXTINF:-1 group-title=\"{genre}\",{processed_title}\n{link}\n\n"
+                existing_m3u += new_entry
+    
+    # Perbarui file di GitHub
+    update_github_file(existing_m3u)
+
+# Menu utama
+if __name__ == "__main__":
+    print("Pilih opsi:")
+    print("1. Perbarui film")
+    choice = input("Masukkan pilihan Anda: ")
+    if choice == "1":
+        main()
+    else:
+        print("Pilihan tidak valid.")
