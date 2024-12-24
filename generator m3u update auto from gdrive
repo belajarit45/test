@@ -31,30 +31,23 @@ def process_filename(filename):
     new_name = re.sub(r"^.*?-(.*?)(-\d{3,4}p)?\.mp4$", r"\1\2", filename)
     return new_name
 
-# Fungsi untuk mendapatkan daftar file di Google Drive dari folder tertentu
-def get_google_drive_files():
-    params = {
-        "q": f"'{GOOGLE_DRIVE_FOLDER_ID}' in parents and trashed=false",  # Cek file di folder tertentu
-        "fields": "files(name, id)",  # Ambil nama dan id file
-        "key": GOOGLE_DRIVE_API_KEY
-    }
-    response = requests.get(GOOGLE_DRIVE_API_URL, params=params)
-    if response.status_code == 200:
-        return {file["name"]: file["id"] for file in response.json().get("files", [])}
-    else:
-        print("Gagal mendapatkan file dari Google Drive:", response.text)
-        return {}
-
-# Fungsi untuk memeriksa genre film di TMDB berdasarkan judul film
-def get_movie_genre(title):
+# Fungsi untuk mendapatkan genre dan poster dari TMDB berdasarkan judul film
+def get_movie_genre_and_poster(title):
     params = {"api_key": TMDB_API_KEY, "query": title}
     response = requests.get(TMDB_BASE_URL, params=params)
     if response.status_code == 200 and response.json()["results"]:
-        genres = response.json()["results"][0].get("genre_ids", [])
-        if genres:
-            genre_id = genres[0]
-            return translate_genre_to_indonesian(genre_id)
-    return "Tidak Diketahui"
+        movie = response.json()["results"][0]
+        genres = movie.get("genre_ids", [])
+        poster_path = movie.get("poster_path", "")
+        
+        # Ambil genre dan terjemahkan ke Bahasa Indonesia
+        genre = translate_genre_to_indonesian(genres[0]) if genres else "Tidak Diketahui"
+        
+        # Buat URL untuk poster
+        poster_url = f"https://image.tmdb.org/t/p/w300{poster_path}" if poster_path else ""
+        
+        return genre, poster_url
+    return "Tidak Diketahui", ""
 
 # Fungsi untuk menerjemahkan genre TMDB ke bahasa Indonesia
 def translate_genre_to_indonesian(genre_id):
@@ -80,6 +73,20 @@ def translate_genre_to_indonesian(genre_id):
         37: "Barat"
     }
     return genre_mapping.get(genre_id, "Tidak Diketahui")
+
+# Fungsi untuk mendapatkan daftar file di Google Drive dari folder tertentu
+def get_google_drive_files():
+    params = {
+        "q": f"'{GOOGLE_DRIVE_FOLDER_ID}' in parents and trashed=false",  # Cek file di folder tertentu
+        "fields": "files(name, id)",  # Ambil nama dan id file
+        "key": GOOGLE_DRIVE_API_KEY
+    }
+    response = requests.get(GOOGLE_DRIVE_API_URL, params=params)
+    if response.status_code == 200:
+        return {file["name"]: file["id"] for file in response.json().get("files", [])}
+    else:
+        print("Gagal mendapatkan file dari Google Drive:", response.text)
+        return {}
 
 # Fungsi untuk mendapatkan konten file dari GitHub
 def get_github_file():
@@ -134,10 +141,11 @@ def main():
                 print(f"Film '{processed_title}' sudah ada.")
             else:
                 print(f"Menambahkan film '{processed_title}'...")
-                genre = get_movie_genre(title_without_year)
+                genre, poster_url = get_movie_genre_and_poster(title_without_year)
                 link = GOOGLE_DRIVE_TEMPLATE.format(file_id=file_id)
-                # Tambahkan newline setelah link untuk memberikan jarak satu baris
-                new_entry = f"#EXTINF:-1 group-title=\"{genre}\",{processed_title}\n{link}\n\n"
+                
+                # Tambahkan entry dengan tvg-logo tanpa koma
+                new_entry = f"#EXTINF:-1 group-title=\"{genre}\" tvg-logo=\"{poster_url}\",{processed_title}\n{link}\n\n"
                 existing_m3u += new_entry
     
     # Perbarui file di GitHub
