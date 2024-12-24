@@ -10,14 +10,14 @@ GITHUB_FILE_PATH = "filmupdate.m3u"
 GITHUB_ACCESS_TOKEN = "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"
 
 # Template link Google Drive
-GOOGLE_DRIVE_TEMPLATE = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key=AIzaSyCCktYZv7eHScolv3-H8qB0tz-ycFj73F0"
+GOOGLE_DRIVE_TEMPLATE = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM"
 
 # Konfigurasi API TMDB
 TMDB_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
 TMDB_BASE_URL = "https://api.themoviedb.org/3/search/movie"
 
 # Konfigurasi API Google Drive
-GOOGLE_DRIVE_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
+GOOGLE_DRIVE_API_KEY = "AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM"
 GOOGLE_DRIVE_API_URL = "https://www.googleapis.com/drive/v3/files"
 
 # ID folder Google Drive (diperoleh dari URL folder)
