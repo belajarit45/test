@@ -13,7 +13,7 @@ GOOGLE_DRIVE_TEMPLATE = f"https://www.googleapis.com/drive/v3/files/{{file_id}}?
 GITHUB_URL = "https://raw.githubusercontent.com/belajarit45/test/main/filmupdate.m3u"
 GITHUB_REPO = "belajarit45/test"  # Format: username/repo
 GITHUB_FILE_PATH = "filmupdate.m3u"
-GITHUB_ACCESS_TOKEN = "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"
+GITHUB_ACCESS_TOKEN = "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"
 
 # Konfigurasi API TMDB
 TMDB_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
