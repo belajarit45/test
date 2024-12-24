@@ -9,8 +9,8 @@ GITHUB_REPO = "belajarit45/test"  # Format: username/repo
 GITHUB_FILE_PATH = "filmupdate.m3u"
 GITHUB_ACCESS_TOKEN = "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"
 
-# Template link Google Drive
-GOOGLE_DRIVE_TEMPLATE = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key=AIzaSyCCktYZv7eHScolv3-H8qB0tz-ycFj73F0"
+# Template link Google Drive (dengan f-string)
+GOOGLE_DRIVE_TEMPLATE = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key=" + GOOGLE_DRIVE_API_KEY
 
 # Konfigurasi API TMDB
 TMDB_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
