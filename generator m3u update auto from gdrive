@@ -3,21 +3,23 @@ import json
 import base64
 import re
 
+# Konfigurasi API Google Drive
+GOOGLE_DRIVE_API_KEY = "AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM"  # Pastikan API Key didefinisikan terlebih dahulu
+
+# Template link Google Drive (gunakan f-string untuk memasukkan API Key)
+GOOGLE_DRIVE_TEMPLATE = f"https://www.googleapis.com/drive/v3/files/{{file_id}}?alt=media&key={GOOGLE_DRIVE_API_KEY}"
+
 # URL untuk file m3u di GitHub
 GITHUB_URL = "https://raw.githubusercontent.com/belajarit45/test/main/filmupdate.m3u"
 GITHUB_REPO = "belajarit45/test"  # Format: username/repo
 GITHUB_FILE_PATH = "filmupdate.m3u"
-GITHUB_ACCESS_TOKEN = "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"
-
-# Template link Google Drive (dengan f-string)
-GOOGLE_DRIVE_TEMPLATE = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key=" + GOOGLE_DRIVE_API_KEY
+GITHUB_ACCESS_TOKEN = "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"
 
 # Konfigurasi API TMDB
 TMDB_API_KEY = "c1b8af6773dd98d6fdca544cfb790363"
 TMDB_BASE_URL = "https://api.themoviedb.org/3/search/movie"
 
 # Konfigurasi API Google Drive
-GOOGLE_DRIVE_API_KEY = "AIzaSyCCktYZv7eHScolv3-H8qB0tz-ycFj73F0"
 GOOGLE_DRIVE_API_URL = "https://www.googleapis.com/drive/v3/files"
 
 # ID folder Google Drive (diperoleh dari URL folder)
