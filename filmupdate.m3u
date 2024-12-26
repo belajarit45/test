@@ -65,3 +65,30 @@ https://be4242.rcr52.ams03.cdn255.com/hls2/03/06985/89i35mkqyc9g_x/index-v1.m3u8
 
 #EXTINF:-1 , cast 2
 https://be4242.rcr52.ams03.cdn255.com/hls2/03/06985/89i35mkqyc9g_x/index-v1.m3u8?t=on4ANHq8rcnO3tXK5RhzJDORbZK0wiCDQuAfduejnPo&s=1735186399&e=10800&f=34929604&srv=53&asn=63859&sp=5500&p=
+#EXTINF:-1 group-title="Fantasi" tvg-logo="https://image.tmdb.org/t/p/w300/d13Uj86LdbDLrfDoHR5aDOFYyJC.jpg",How to Train Your Dragon 2 (2014)-1080p
+https://www.googleapis.com/drive/v3/files/1m1sbWv4k-m_uMVQhakyOmKo9btXLiROZ?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Fantasi" tvg-logo="https://image.tmdb.org/t/p/w300/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg",How to Train Your Dragon (2010)-1080p
+https://www.googleapis.com/drive/v3/files/1eRycYuaIcseHnQNYiZ4pBjtRv5YiIy34?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Animasi" tvg-logo="https://image.tmdb.org/t/p/w300/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg",Zootopia (2016)-1080p
+https://www.googleapis.com/drive/v3/files/1XXWz476cDS4LTK1GVNCJQBmMdizTG2Te?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Animasi" tvg-logo="https://image.tmdb.org/t/p/w300/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",Inside Out 2 (2024)-1080p
+https://www.googleapis.com/drive/v3/files/1QCFsSsntTNB-QtmdGJ-7wQFL1AupPDU_?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Keluarga" tvg-logo="https://image.tmdb.org/t/p/w300/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",Coco (2017)-1080p
+https://www.googleapis.com/drive/v3/files/10XuC6ArQNLSuEwvGSdlTCkNd2fxSLkEG?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Animasi" tvg-logo="https://image.tmdb.org/t/p/w300/i4loA3szFY4NahII8crVY4YEH5j.jpg",Despicable Me 4 (2024)-1080p
+https://www.googleapis.com/drive/v3/files/1nsS_hXO-WOMQaZFa4gnwd8AD2NRp91Fn?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Animasi" tvg-logo="https://image.tmdb.org/t/p/w300/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg",Elemental (2023)-1080p
+https://www.googleapis.com/drive/v3/files/13P0QYK-DWdMqnIvwI4VbYi0MSiwnVsdG?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Aksi" tvg-logo="https://image.tmdb.org/t/p/w300/oajNi4Su39WAByHI6EONu8G8HYn.jpg",Kung Fu Panda 3 (2016)-1080p
+https://www.googleapis.com/drive/v3/files/1Hig9804knZ97AKB1JXtUBCPP6Y1LEYrq?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
+#EXTINF:-1 group-title="Animasi" tvg-logo="https://image.tmdb.org/t/p/w300/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg",Finding Nemo (2003)-1080p
+https://www.googleapis.com/drive/v3/files/1X8t3YWP7Pvwf2RNxRYJUq-f93489o2HV?alt=media&key=AIzaSyAgJTMxYvzv6eYKLMfHrHUyzIVEvCMkUcM
+
